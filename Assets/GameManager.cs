@@ -10,10 +10,25 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] TMP_InputField inputField;
-    string nameText;
+    public string nameText;
     
-    
-    
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+
     public void TheNameIs()
     {
         nameText = inputField.text;
@@ -24,4 +39,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void UpdateScore(int newScore)
+    {
+
+
+    }
+
 }
